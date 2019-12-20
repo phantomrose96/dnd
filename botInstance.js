@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const GENERAL = "656721557741240342";
+const channels = require('./channels.json');
 
 function bootUp(bot_secret_token) {
     const client = new Discord.Client();
@@ -9,8 +9,8 @@ function bootUp(bot_secret_token) {
     });
     
     client.on('message', message => {
-        if(message.channel.type == "dm" && message.author.id !== client.user.tag) {
-            client.channels.get(GENERAL).send(message.content);
+        if(message.channel.type == "dm") {
+            client.channels.get(channels.general).send(message.content);
         }
     });
 
